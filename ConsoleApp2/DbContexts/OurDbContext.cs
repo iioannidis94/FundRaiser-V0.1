@@ -11,6 +11,7 @@ namespace ConsoleApp2.DbContexts
 {
     public class OurDbContext : DbContext
     {
+        //comment test
 
         //     private readonly string connectionString = "Data Source=(local);Initial Catalog=Crm-2023;" +
         //        "User Id=sa; Password=passw0rd;TrustServerCertificate=True;";
