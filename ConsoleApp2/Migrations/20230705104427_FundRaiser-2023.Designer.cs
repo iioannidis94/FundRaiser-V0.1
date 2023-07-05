@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsoleApp2.Migrations
 {
     [DbContext(typeof(OurDbContext))]
-    [Migration("20230705101410_FundRaiser")]
-    partial class FundRaiser
+    [Migration("20230705104427_FundRaiser-2023")]
+    partial class FundRaiser2023
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,22 +28,14 @@ namespace ConsoleApp2.Migrations
             modelBuilder.Entity("ConsoleApp2.Models.Backer", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("ProjectsId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectsId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Backers");
                 });
@@ -72,17 +64,9 @@ namespace ConsoleApp2.Migrations
             modelBuilder.Entity("ConsoleApp2.Models.ProjectCreator", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("ProjectCreators");
                 });
@@ -230,13 +214,15 @@ namespace ConsoleApp2.Migrations
 
             modelBuilder.Entity("ConsoleApp2.Models.Backer", b =>
                 {
+                    b.HasOne("ConsoleApp2.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ConsoleApp2.Models.Projects", null)
                         .WithMany("Backers")
                         .HasForeignKey("ProjectsId");
-
-                    b.HasOne("ConsoleApp2.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -254,7 +240,9 @@ namespace ConsoleApp2.Migrations
                 {
                     b.HasOne("ConsoleApp2.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

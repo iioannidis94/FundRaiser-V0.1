@@ -5,7 +5,7 @@
 namespace ConsoleApp2.Migrations
 {
     /// <inheritdoc />
-    public partial class FundRaiser : Migration
+    public partial class FundRaiser2023 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,17 +28,16 @@ namespace ConsoleApp2.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProjectCreators", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProjectCreators_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_ProjectCreators_Users_Id",
+                        column: x => x.Id,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,9 +66,7 @@ namespace ConsoleApp2.Migrations
                 name: "Backers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     ProjectsId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -81,10 +78,11 @@ namespace ConsoleApp2.Migrations
                         principalTable: "Projects",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Backers_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Backers_Users_Id",
+                        column: x => x.Id,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -196,19 +194,9 @@ namespace ConsoleApp2.Migrations
                 column: "ProjectsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Backers_UserId",
-                table: "Backers",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Categories_ProjectsId",
                 table: "Categories",
                 column: "ProjectsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectCreators_UserId",
-                table: "ProjectCreators",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectFundings_BackerId",
