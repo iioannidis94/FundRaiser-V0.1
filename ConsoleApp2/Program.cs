@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using ConsoleApp2.DbContexts;
+using ConsoleApp2.Models;
+using ConsoleApp2.Services;
+
+using var DbContext = new OurDbContext();
+
+var projectServices = new ProjectServices(DbContext);
+
+
+
+
