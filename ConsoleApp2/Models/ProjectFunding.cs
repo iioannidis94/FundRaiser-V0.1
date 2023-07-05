@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2.Models
+{
+    /* ProjectFunding
+     * |Backer| |Project| */
+
+    public class ProjectFunding
+    {
+        public int Id { get; set; }
+        public decimal AmountContributed { get; set; }
+
+        public DateTime Date = DateTime.Now;
+        public virtual Backer? Backer { get; set; }
+        public virtual Projects? Projects { get; set; }
+    }
+}
