@@ -24,7 +24,7 @@ namespace ConsoleApp2.DbContexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProjectCreator> ProjectCreators { get; set; }
         public DbSet<ProjectFunding> ProjectFundings { get; set; }
-        public DbSet<Projects> Projects { get; set; }
+        public DbSet<Project> Projects { get; set; }
         public DbSet<RewardPackage> RewardPackages { get; set; }
         public DbSet<ProjectPhotos> ProjectPhotos { get; set; }
         public DbSet<ProjectVideos> ProjectVideos { get; set; }

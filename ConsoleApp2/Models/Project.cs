@@ -9,7 +9,7 @@ namespace ConsoleApp2.Models
     /*  Projects
         {Backer} |ProjectCreator| {RewardPackage} {ProjectFundings} |Category| {ProjectPhotos} {ProjectVideos} */
 
-    public class Projects
+    public class Project
     {
         public int Id { get; set; }
         public string? Title { get; set; }
