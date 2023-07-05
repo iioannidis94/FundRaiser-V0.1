@@ -16,6 +16,6 @@ namespace ConsoleApp2.Models
         [Key, ForeignKey("User")]
         public int Id { get; set; }
         public virtual User? User { get; set; }
-        public virtual IEnumerable<Projects> Projects { get; set; } = new List<Projects>();
+        public virtual IEnumerable<Project> Projects { get; set; } = new List<Project>();
     }
 }

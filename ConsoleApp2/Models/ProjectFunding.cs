@@ -16,6 +16,6 @@ namespace ConsoleApp2.Models
 
         public DateTime Date = DateTime.Now;
         public virtual Backer? Backer { get; set; }
-        public virtual Projects? Projects { get; set; }
+        public virtual Project? Projects { get; set; }
     }
 }

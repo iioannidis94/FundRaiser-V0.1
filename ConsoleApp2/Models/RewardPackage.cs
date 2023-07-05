@@ -15,6 +15,6 @@ namespace ConsoleApp2.Models
         public string? PackageName { get; set; }
         public decimal PackageAmount { get; set; }
         public string? RewardDescription { get; set; }
-        public virtual Projects? Projects { get; set; }
+        public virtual Project? Projects { get; set; }
     }
 }

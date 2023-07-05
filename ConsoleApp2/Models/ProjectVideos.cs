@@ -13,6 +13,6 @@ namespace ConsoleApp2.Models
     {
         public int Id { get; set; }
         public string? VideoName { get; set; }
-        public virtual Projects? Projects { get; set; }
+        public virtual Project? Projects { get; set; }
     }
 }
